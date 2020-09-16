@@ -1,7 +1,8 @@
 import React, { InputHTMLAttributes, useEffect, useRef, useState, useCallback } from 'react';
 import { IconBaseProps } from 'react-icons'
-import { Container } from './style';
-
+import { FiAlertCircle } from 'react-icons/fi'
+import { Container, Error } from './style';
+import { Tooltip } from '../Tooltip/Tooltip'
 import { useField } from '@unform/core'; // hook that receive name of camp, and return some proprieties
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -46,13 +47,15 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...props }) => {
 
 
   return (
-    <Container isFilled={isFilled} isFocused={isFocused}>
+    <Container isErrored={!!error} isFilled={isFilled} isFocused={isFocused}>
       {Icon && <Icon />}
       <input onFocus={handleFocus}
         onBlur={handleInputBlur}
         ref={inputRef} {...props} type="text" />
 
-      {error}
+      {error && <Error title={error}>
+        <FiAlertCircle color="#c53030" size={20} />
+      </Error>}
     </Container >
 
   )

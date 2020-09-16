@@ -8,6 +8,8 @@ import * as yup from 'yup';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 
+import getValidationErrors from '../../utils/getValidationErrors'
+
 import { Container, Content, Background } from './styles';
 
 const SignUp: React.FC = () => {
@@ -17,6 +19,7 @@ const SignUp: React.FC = () => {
   const handleSubmit = useCallback(async (data: object) => {
 
     try {
+      formRef.current?.setErrors({});
 
       const schema = yup.object().shape({
 
@@ -26,13 +29,14 @@ const SignUp: React.FC = () => {
 
       });
 
-      await schema.validate(data, { abortEarly: false });
+      await schema.validate(data, { abortEarly: false }); // validate all data and return all errors
 
     } catch (err) {
       console.log(err)
-      formRef.current?.setErrors({
-        name: 'Nome Obrigaótio "',
-      });
+
+      const errors = getValidationErrors(err);
+
+      formRef.current?.setErrors(errors);
 
     }
 
