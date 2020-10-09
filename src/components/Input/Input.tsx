@@ -2,13 +2,11 @@ import React, { InputHTMLAttributes, useEffect, useRef, useState, useCallback } 
 import { IconBaseProps } from 'react-icons'
 import { FiAlertCircle } from 'react-icons/fi'
 import { Container, Error } from './style';
-import { Tooltip } from '../Tooltip/Tooltip'
 import { useField } from '@unform/core'; // hook that receive name of camp, and return some proprieties
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   icon: React.ComponentType<IconBaseProps>;
-
 } // get all props from input tag html, name is request
 
 const Input: React.FC<InputProps> = ({ name, icon: Icon, ...props }) => {
@@ -25,15 +23,11 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...props }) => {
     } else {
       setIsFilled(false);
     }
-
-
   }, [])
 
   const handleFocus = useCallback(() => {
     setIsFocused(true);
   }, [])
-
-
 
   const { fieldName, defaultValue, error, registerField } = useField(name);
 

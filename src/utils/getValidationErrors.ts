@@ -2,7 +2,7 @@ import { ValidationError } from 'yup'
 
 
 interface Errors {
-  [key: string]: string; // key can be any string
+  [key: string]: string; // key can be any string, and value too
 }
 
 export default function getErrors(err: ValidationError): Errors {

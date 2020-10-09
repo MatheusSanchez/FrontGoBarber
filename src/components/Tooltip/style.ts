@@ -9,12 +9,13 @@ span{
   padding: 8px;
   border-radius: 4px;
   font-size: 14px;
-
   font-weight: 500;
+  width: 160px;
+
   position: absolute;
-  bottom: calc(100%+12px);
+  bottom: calc(100% + 12px);
   left: 50%;
-  transform: translate(-50%);
+  transform: translateX(-50%);
   color: #312e38;
   opacity: 0;
   transition: opacity 0.4s;
