@@ -5,7 +5,7 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as yup from 'yup'
 
-import { AuthContext } from '../../context/AuthContext';
+import { useAuth } from '../../hooks/AuthContext';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 import getValidationErrors from '../../utils/getValidationErrors'
@@ -21,7 +21,7 @@ interface SignInFormData {
 const SignIn: React.FC = () => {
 
   const formRef = useRef<FormHandles>(null);
-  const { user, signIn } = useContext(AuthContext);
+  const { user, signIn } = useAuth();
   console.log(user);
 
   const handleSubmit = useCallback(async (data: SignInFormData) => {
@@ -42,11 +42,13 @@ const SignIn: React.FC = () => {
       signIn({ email: data.email, password: data.password });
 
     } catch (err) {
-      console.log(err)
+      console.log(err);
+      if (err instanceof yup.ValidationError) {
+        const errors = getValidationErrors(err);
+        formRef.current?.setErrors(errors);
+      }
 
-      const errors = getValidationErrors(err);
 
-      formRef.current?.setErrors(errors);
 
     }
 
