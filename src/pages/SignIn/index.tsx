@@ -12,6 +12,7 @@ import getValidationErrors from '../../utils/getValidationErrors'
 
 import { Container, Content, Background } from './styles';
 import { sign } from 'crypto';
+import { useToast } from '../../hooks/ToastContext';
 
 interface SignInFormData {
   email: string;
@@ -21,8 +22,9 @@ interface SignInFormData {
 const SignIn: React.FC = () => {
 
   const formRef = useRef<FormHandles>(null);
-  const { user, signIn } = useAuth();
-  console.log(user);
+  const { signIn } = useAuth();
+  const { addToast } = useToast();
+
 
   const handleSubmit = useCallback(async (data: SignInFormData) => {
 
@@ -47,7 +49,11 @@ const SignIn: React.FC = () => {
         const errors = getValidationErrors(err);
         formRef.current?.setErrors(errors);
       }
-
+      addToast({
+        type: 'error',
+        title: 'Erro na autenticação',
+        description: 'Ocorreu um erro ao fazer login, cheque as credenciais',
+      });
 
 
     }

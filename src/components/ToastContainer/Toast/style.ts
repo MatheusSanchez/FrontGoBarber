@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components'
 
 interface ToastProps {
   type?: 'sucess' | 'error' | 'info';
@@ -18,18 +18,9 @@ const toastTypeVariations = {
     background: #fddede;
     color: #c53030;
   `
-
 }
 
-export const Container = styled.div`
-  padding: 30px;
-  position: absolute;
-  right: 0;
-  top: 0;
-  overflow: hidden; // hidden overflow informations out of div
-`;
-
-export const Toasts = styled.div<ToastProps>`
+export const Container = styled.div<ToastProps>`
   width: 360px;
   padding: 16px 30px 16px 16px;
   position: relative;
