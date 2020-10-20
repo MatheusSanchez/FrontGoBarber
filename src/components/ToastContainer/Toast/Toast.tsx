@@ -7,6 +7,7 @@ import { FiAlertCircle, FiXCircle, FiCheckCircle, FiInfo } from 'react-icons/fi'
 
 interface ToastProps {
   message: ToastMessage;
+  style: object;
 }
 
 const icons = {
@@ -17,7 +18,7 @@ const icons = {
 
 
 
-const Toast: React.FC<ToastProps> = ({ message }) => {
+const Toast: React.FC<ToastProps> = ({ message, style }) => {
 
   const { removeToast } = useToast();
 
@@ -33,7 +34,7 @@ const Toast: React.FC<ToastProps> = ({ message }) => {
   }, [message.id, removeToast])
 
   return (
-    <Container type={message.type} hasDescription={!!message.type}>
+    <Container type={message.type} hasDescription={!!message.type} style={style}>
       {icons[message.type || 'info']}
       <div>
         <strong>
