@@ -14,6 +14,7 @@ import { Container, Content, Background } from './styles';
 
 const SignUp: React.FC = () => {
 
+
   const formRef = useRef<FormHandles>(null);
 
   const handleSubmit = useCallback(async (data: object) => {
@@ -46,11 +47,11 @@ const SignUp: React.FC = () => {
 
 
   return (
+
     <Container>
       <Background />
       <Content>
         <img src={logoImg} alt="GoBarber" />
-
         <Form ref={formRef} onSubmit={handleSubmit}>
           <h1>Faça seu Cadastro</h1>
           <Input icon={FiUser} name="name" placeholder="Nome" />
@@ -68,8 +69,6 @@ const SignUp: React.FC = () => {
       </a>
 
       </Content>
-
-
     </Container >
   )
 };

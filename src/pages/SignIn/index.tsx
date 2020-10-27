@@ -1,8 +1,9 @@
-import React, { useRef, useCallback, useContext } from 'react';
+import React, { useRef, useCallback } from 'react';
 import logoImg from '../../assets/logo.svg';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
+import { Link } from 'react-router-dom'
 import * as yup from 'yup'
 
 import { useAuth } from '../../hooks/AuthContext';
@@ -11,7 +12,7 @@ import Button from '../../components/Button/Button';
 import getValidationErrors from '../../utils/getValidationErrors'
 
 import { Container, Content, Background } from './styles';
-import { sign } from 'crypto';
+
 import { useToast } from '../../hooks/ToastContext';
 
 interface SignInFormData {
@@ -78,10 +79,10 @@ const SignIn: React.FC = () => {
 
 
       </Form>
-      <a href="login">
+      <Link to="/signup">
         <FiLogIn />
         Criar Conta
-      </a>
+      </Link>
 
     </Content>
 

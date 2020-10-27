@@ -47,7 +47,7 @@ const ToastProvider: React.FC = ({ children }) => {
   }, []);
 
   const removeToast = useCallback((id: string) => {
-    setMessages((oldMessages) => (oldMessages.filter(messages => messages.id != id)));
+    setMessages((oldMessages) => (oldMessages.filter(messages => messages.id !== id)));
   }, []);
 
   return (
