@@ -2,6 +2,7 @@ import React, { useCallback, useRef } from 'react';
 import logoImg from '../../assets/logo.svg';
 import { FiArrowLeft, FiMail, FiUser, FiLock } from 'react-icons/fi';
 import { Form } from '@unform/web';
+import { Link } from 'react-router-dom'
 import { FormHandles } from '@unform/core';
 import * as yup from 'yup';
 
@@ -63,10 +64,10 @@ const SignUp: React.FC = () => {
 
 
         </Form>
-        <a href="login">
+        <Link to='/'>
           <FiArrowLeft />
           Voltar para Logon
-      </a>
+          </Link>
 
       </Content>
     </Container >
