@@ -3,7 +3,7 @@ import logoImg from '../../assets/logo.svg';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import * as yup from 'yup'
 
 import { useAuth } from '../../hooks/AuthContext';
@@ -25,7 +25,7 @@ const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const { signIn } = useAuth();
   const { addToast } = useToast();
-
+  const history = useHistory();
 
   const handleSubmit = useCallback(async (data: SignInFormData) => {
 
@@ -43,6 +43,7 @@ const SignIn: React.FC = () => {
       await schema.validate(data, { abortEarly: false }); // validate all data and return all errors
 
       signIn({ email: data.email, password: data.password });
+      history.push('/dashboard')
 
     } catch (err) {
       console.log(err);
@@ -60,7 +61,7 @@ const SignIn: React.FC = () => {
     }
 
     console.log(data);
-  }, [signIn]);
+  }, [signIn, addToast, history]);
 
 
   return (<Container>
